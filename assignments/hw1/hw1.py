@@ -1,7 +1,7 @@
 """
 Name: Alex James
 hw1.py
-Problem: This program solves some conversion, cost calculation, and area/volume problems.
+Problem: This program solves some conversion, cost calculation, area, and volume problems.
 Certification of Authenticity:
 I certify that this assignment is entirely my own work.
 """
