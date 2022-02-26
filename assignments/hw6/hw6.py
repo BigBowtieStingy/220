@@ -1,42 +1,71 @@
 """
-Name: <your name goes here – first and last>
-<ProgramName>.py
-
-Problem: <Brief, one or two sentence description of the problem that this program solves, in your own words.>
-
+Name: Alex James
+hw5.py
+Problem: Create programs that use string methods and functions
 Certification of Authenticity:
-<include one of the following>
 I certify that this assignment is entirely my own work.
-I certify that this assignment is my own work, but I discussed it with: <Name(s)>
 """
+import math
 
 
 def cash_converter():
-    pass
+    cash_amount = eval(input("Enter an integer:"))
+    print("That is ${:.2f}".format(cash_amount))
 
 
 def encode():
-    pass
+    message = input("Enter a message:")
+    key = eval(input("Enter a key:"))
+    # Convert each character into a number, add the key, and turn it back into a character
+    encrypted_message = ""
+    for character in message:
+        character = ord(character) + key
+        encrypted_message = encrypted_message + chr(character)
+    print(encrypted_message)
 
 
 def sphere_area(radius):
-    pass
+    area = 4 * math.pi * math.pow(radius, 2)
+    return area
 
 
 def sphere_volume(radius):
-    pass
+    volume = (4 / 3) * math.pi * math.pow(radius, 3)
+    return volume
 
 
 def sum_n(number):
-    pass
+    number_sum = 0
+    for i in range(1, number + 1):
+        number_sum = number_sum + i
+    return number_sum
 
 
 def sum_n_cubes(number):
-    pass
+    cube_sum = 0
+    for i in range(1, number + 1):
+        cube_sum = cube_sum + math.pow(i, 3)
+    return cube_sum
 
 
 def encode_better():
-    pass
+    message = input("Enter a message:")
+    key = input("Enter a key:")
+    key_length = len(key)
+    key_start = 0
+    encrypted_message = ""
+    for letter in message:
+        # Get both the encrypted letter and key, subtract by 65 to line them up with range
+        encrypted_letter = ord(letter) - 65
+        encrypted_key = ord(key[key_start]) - 65
+        # Update the key loop
+        key_start = key_start + 1
+        # Restart key loop if it reaches its end
+        key_start = (key_start % key_length)
+        # Add the characters together and put results into message
+        encrypted_total = (encrypted_letter + encrypted_key) % 58
+        encrypted_message = encrypted_message + chr(encrypted_total + 65)
+    print(encrypted_message)
 
 
 if __name__ == '__main__':
