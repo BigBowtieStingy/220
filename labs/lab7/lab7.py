@@ -50,6 +50,7 @@ def main(file_to_open, file_to_write):
     final_table = []
     for message_item in message_table:
         if check_table[j] == 1:
+            # if 1 then treated as a set of grades to be factored into class average
             j = j + 1
             class_average = class_average + eval(message_item)
             student_name = names_table[next_student]
@@ -59,6 +60,7 @@ def main(file_to_open, file_to_write):
             print(message)
             final_table.append(message)
         else:
+            # if 0 then treated not treated as a set of grades to be factored into class average
             j = j + 1
             student_name = names_table[next_student]
             message = student_name + "'s average: " + message_item
