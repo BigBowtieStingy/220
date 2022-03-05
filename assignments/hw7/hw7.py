@@ -1,7 +1,7 @@
 """
 Name: Alex James
 hw7.py
-Problem: Create programs that use string methods and functions
+Problem: Create programs that use functions and writing to files.
 Certification of Authenticity:
 I certify that this assignment is entirely my own work.
 """
