@@ -106,6 +106,3 @@ def bumper():
     close_message.draw(window)
     window.getMouse()
     window.close()
-
-
-bumper()
