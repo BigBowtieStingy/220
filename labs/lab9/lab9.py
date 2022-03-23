@@ -95,6 +95,7 @@ def play(board):
                     current_player = "X"
                 error_message = ""
             else:
+                # Create and error message and don't update the player if the space is filled
                 error_message = "Space is filled or number is invalid. Try again."
             game_over_bool = game_over(board)
             winner_string = "No one won. A tie."
