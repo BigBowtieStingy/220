@@ -16,11 +16,13 @@ def get_words(file_name):
 
 
 def get_random_word(words):
+    # convert list of words into a string, remove & split at the new line character
     new_string = ""
     for word in words:
         new_string = new_string + word
     new_string.strip()
     new_list = new_string.split("\n")
+    # remove new line at end of file
     new_list.remove("")
     random_num = randint(0, (len(new_list) - 1))
     return new_list[random_num]
@@ -28,6 +30,7 @@ def get_random_word(words):
 
 def letter_in_secret_word(letter, secret_word):
     found = secret_word.find(letter)
+    # if the letter is found in the secret word, variable found is greater than -1
     if found == -1:
         return False
     return True
@@ -44,6 +47,7 @@ def make_hidden_secret(secret_word, guesses):
     return_string = ""
     for letter in secret_word:
         is_guessed = guesses.count(letter)
+        # replace _ with the letter if it has been guessed
         if is_guessed > 0:
             return_string += letter + " "
         else:
@@ -54,6 +58,7 @@ def make_hidden_secret(secret_word, guesses):
 
 def won(guessed):
     for letter in guessed:
+        # if there is any underscore in the secret word, return False
         if letter == "_":
             return False
     return True
@@ -74,6 +79,7 @@ def play_command_line(secret_word):
             if letter_in_secret_word(new_letter, secret_word):
                 word_display = make_hidden_secret(secret_word, guessed_letters)
             else:
+                # decrement guesses only if that letter was not in the secret word
                 guesses_remaining -= 1
             if won(word_display):
                 print("winner!")
@@ -91,6 +97,7 @@ def play_graphic_interface(secret_word):
     guesses_remaining = 6
     word_display = make_hidden_secret(secret_word, guessed_letters)
     gui = GraphWin("Hangman", 750, 750)
+    # set up various shapes and lines that make up the GUI
     gallows = [Line(Point(300, 460), Point(540, 460)), Line(Point(420, 460), Point(420, 120)),
                Line(Point(210, 120), Point(420, 120)), Line(Point(210, 120), Point(210, 150))]
     body = [Circle(Point(210, 190), 40), Line(Point(210, 230), Point(210, 450)),
@@ -112,6 +119,7 @@ def play_graphic_interface(secret_word):
         gui.getMouse()
         new_letter = input_box.getText()
         if not already_guessed(new_letter, guessed_letters):
+            # update various graphics when a new letter is guessed
             guessed_letter_box.undraw()
             guessed_letters.append(new_letter)
             guessed_letter_box.setText(guessed_letters)
@@ -127,6 +135,7 @@ def play_graphic_interface(secret_word):
             if won(word_display):
                 guesses_remaining = 0
                 result.setText("winner!")
+                # undraw the input and message to ask for input once game is over
                 input_box.undraw()
                 inputting_letter_header.undraw()
                 result.draw(gui)
@@ -135,5 +144,6 @@ def play_graphic_interface(secret_word):
         result.draw(gui)
         input_box.undraw()
         inputting_letter_header.undraw()
+    # wait for the user to click to close
     gui.getMouse()
     gui.close()
