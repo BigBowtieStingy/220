@@ -5,7 +5,7 @@ from random import randint
 """
 Alex James
 lab11.py
-Problem: Create a 3 door game.
+Problem: Create a 3 door game using a Button and Door class.
 Certification of Authenticity:
 I certify that this assignment is entirely my own work.
 """
@@ -14,6 +14,7 @@ I certify that this assignment is entirely my own work.
 def three_door_game():
     win_times = 0
     lose_times = 0
+    # Create graphics for the game
     win = GraphWin("Three Door Game", 500, 500)
     wins_frame = Rectangle(Point(25, 50), Point(75, 100))
     wins_text = Text(Point(50, 25), "Wins")
@@ -32,20 +33,25 @@ def three_door_game():
     door_colors = [color_rgb(145, 42, 42), color_rgb(10, 200, 50), color_rgb(225, 35, 35)]
     doors = [door_1, door_2, door_3]
     playing = True
+    # Draw the graphics put into a table
     for graphic in window_graphics:
         graphic.draw(win)
     while playing:
+        # Reset the doors and create a secret door
         for door in doors:
             door.color_door(door_colors[0])
         secret_door = doors[randint(0, 2)]
+        # Remove the secret door from the door list
         doors.remove(secret_door)
         waiting_for_click = True
+        # Second while loop that waits for the user to click one of the 3 doors or the quit button
         while waiting_for_click:
             click_point = win.getMouse()
             waiting_for_click = False
             if secret_door.is_clicked(click_point):
                 win_times += 1
                 prompt_text.setText("You win!")
+            # Since the secret door isn't in the door list, both entries in that list are the wrong door
             elif doors[0].is_clicked(click_point):
                 lose_times += 1
                 prompt_text.setText("Sorry, incorrect.")
@@ -55,17 +61,21 @@ def three_door_game():
                 prompt_text.setText("Sorry, incorrect.")
                 doors[1].color_door(door_colors[2])
             elif quit_button.is_clicked(click_point):
+                # If the user clicks the quit button, it will exit the while loop when it reaches top
                 playing = False
             else:
+                # If nothing is clicked, wait again for the user to click something
                 waiting_for_click = True
+            # Once a door is clicked, color the correct door green and update the win/lose counters
             if not waiting_for_click and playing:
                 click_prompt.setText("Click anywhere to play again.")
                 wins_count.setText(str(win_times))
                 loses_count.setText(str(lose_times))
                 secret_door.color_door(door_colors[1])
+                # Add the secret door back to the door list
                 doors.append(secret_door)
                 win.getMouse()
+                # Reset text after the user clicks the screen again
                 click_prompt.setText("Click to guess which is the secret door.")
                 prompt_text.setText("I have a secret door.")
     win.close()
-
