@@ -1,7 +1,7 @@
 """
 Name: Alex James
 sales_person.py
-Problem: Create a Salesperson class.
+Problem: Create a Salesperson class with an employee id, name, and sales.
 Certification of Authenticity:
 I certify that this assignment is entirely my own work.
 """
