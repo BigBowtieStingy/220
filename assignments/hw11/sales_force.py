@@ -1,7 +1,7 @@
 """
 Name: Alex James
 sales_force.py
-Problem: Create a SalesForce class.
+Problem: Create a SalesForce class that contains a list of SalesPerson objects.
 Certification of Authenticity:
 I certify that this assignment is entirely my own work.
 """
